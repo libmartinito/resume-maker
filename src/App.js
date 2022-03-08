@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import Education from './components/EducationForm'
-import General from './components/GeneralForm'
 import Work from './components/WorkForm'
+import Project from './components/ProjectForm'
+import Form from './components/Form'
+import Resume from './components/Resume'
 import './App.css'
 
 class App extends Component {
@@ -16,6 +18,7 @@ class App extends Component {
       profile: '',
       education: [],
       work: [],
+      project: [],
       isSubmitted: false
     }
   }
@@ -74,20 +77,52 @@ class App extends Component {
     ))
   }
 
+  addProjectChild = () => {
+    this.setState({project: this.state.project.concat([Array(3).fill('')])})
+  }
+
+  handleProjectInputChange = (instanceIndex, valueIndex, e) => {
+    let project = this.state.project
+    let projectInstance = project[instanceIndex]
+    let value = e.target.value
+    projectInstance[valueIndex] = value
+
+    this.setState({project: project})
+  }
+
+  displayProjectForm = () => {
+    return(this.state.project.map((el, i) =>
+      <Project
+        key = {i}
+        index = {i}
+        value = {el}
+        handler = {this.handleProjectInputChange}
+      />
+    ))
+  }
+
+  submitForm = (e) => {
+    e.preventDefault()
+    this.setState({isSubmitted: true})
+  }
+
   render() {
     return(
-      <div className ='container'>
-        <General values = {this.state} handler = {this.handleGeneralInputChange} />
-        <fieldset className = 'input-group'>
-          <legend>Education</legend>
-          {this.displayEducationForm()}
-          <button type = 'button' className = 'button' onClick = {this.addEducationChild}>Add Education</button>
-        </fieldset>
-        <fieldset className = 'input-group'>
-          <legend>Work</legend>
-          {this.displayWorkForm()}
-          <button type = 'button' className = 'button' onClick = {this.addWorkChild}>Add Work</button>
-        </fieldset>
+      <div class='container'>
+        {(this.state.isSubmitted) ? 
+        <Resume values = {this.state}/> :
+        <Form
+          values = {this.state}
+          handleGeneral = {this.handleGeneralInputChange}
+          displayEducation = {this.displayEducationForm}
+          displayWork = {this.displayWorkForm}
+          displayProjects = {this.displayProjectForm}
+          addEducation = {this.addEducationChild}
+          addWork = {this.addWorkChild}
+          addProject = {this.addProjectChild}
+          submit = {this.submitForm}
+        />
+        }
       </div>
     )
   }
