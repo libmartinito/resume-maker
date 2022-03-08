@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class Education extends Component {
+class Work extends Component {
   constructor(props) {
     super(props)
   }
@@ -8,26 +8,26 @@ class Education extends Component {
   render() {
     return(
       <div className = 'input'>
-        <label htmlFor = 'institution' className = 'input-group__label'>Institution</label>
+        <label htmlFor = 'employer' className = 'input-group__label'>Employer</label>
         <input
           type = 'text'
-          id = 'institution'
+          id = 'employer'
           className = 'input-group__input'
           value = {this.props.value[0]}
           onChange = {e => {this.props.handler(this.props.index, 0, e)}}
         />
-        <label htmlFor = 'institution' className = 'input-group__label'>Program</label>
+        <label htmlFor = 'title' className = 'input-group__label'>Title</label>
         <input
           type = 'text'
-          id = 'program'
+          id = 'title'
           className = 'input-group__input'
           value = {this.props.value[1]}
           onChange = {e => {this.props.handler(this.props.index, 1, e)}}
         />
-        <label htmlFor = 'completion-date' className = 'input-group__label'>Date of Completion</label>
+        <label htmlFor = 'period' className = 'input-group__label'>Period</label>
         <input
           type = 'text'
-          id = 'completion-date'
+          id = 'period'
           className = 'input-group__input'
           value = {this.props.value[2]}
           onChange = {e => {this.props.handler(this.props.index, 2, e)}}
@@ -53,4 +53,4 @@ class Education extends Component {
   }
 }
 
-export default Education
+export default Work
