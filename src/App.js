@@ -1,12 +1,25 @@
 import React, { Component } from 'react'
 import Education from './components/EducationForm'
+import General from './components/GeneralForm'
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
+      name: '',
+      location: '',
+      email: '',
+      mobile: '',
+      portfolio: '',
+      profile: '',
       education: []
     }
+  }
+
+  handleGeneralInputChange = (e) => {
+    let value = e.target.value
+    let name = e.target.name
+    this.setState({[name]: value})
   }
 
   addEducationChild = () => {
@@ -35,6 +48,7 @@ class App extends Component {
   render() {
     return(
       <div className ='container'>
+        <General values = {this.state} handler = {this.handleGeneralInputChange} />
         {this.displayEducationForm()}
         <button type = 'text' className = 'button' onClick = {this.addEducationChild}>Add Education</button>
       </div>
