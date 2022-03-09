@@ -18,7 +18,7 @@ class App extends Component {
       profile: '',
       education: [],
       work: [],
-      project: [],
+      projects: [],
       isSubmitted: false
     }
   }
@@ -78,20 +78,20 @@ class App extends Component {
   }
 
   addProjectChild = () => {
-    this.setState({project: this.state.project.concat([Array(3).fill('')])})
+    this.setState({projects: this.state.projects.concat([Array(3).fill('')])})
   }
 
   handleProjectInputChange = (instanceIndex, valueIndex, e) => {
-    let project = this.state.project
-    let projectInstance = project[instanceIndex]
+    let projects = this.state.projects
+    let projectInstance = projects[instanceIndex]
     let value = e.target.value
     projectInstance[valueIndex] = value
 
-    this.setState({project: project})
+    this.setState({projects: projects})
   }
 
   displayProjectForm = () => {
-    return(this.state.project.map((el, i) =>
+    return(this.state.projects.map((el, i) =>
       <Project
         key = {i}
         index = {i}
@@ -106,11 +106,19 @@ class App extends Component {
     this.setState({isSubmitted: true})
   }
 
+  editForm = (e) => {
+    e.preventDefault()
+    this.setState({isSubmitted: false})
+  }
+
   render() {
     return(
-      <div class='container'>
+      <div className='container'>
         {(this.state.isSubmitted) ? 
-        <Resume values = {this.state}/> :
+        <Resume 
+          values = {this.state}
+          edit = {this.editForm}  
+        /> :
         <Form
           values = {this.state}
           handleGeneral = {this.handleGeneralInputChange}

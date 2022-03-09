@@ -1,0 +1,76 @@
+.container__resume {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact__mobile-location,
+.contact__portfolio-email {
+  display: flex;
+  gap: 1rem;
+}
+
+.project__item {
+  padding: 1rem 0rem;
+}
+
+.project__header {
+  display: flex;
+  gap: 1rem;
+}
+
+.project__header p {
+  font-weight: 700;
+  padding-bottom: 0.5rem;
+}
+
+.project__body,
+.education__body,
+.work__body {
+  padding-left: 1rem;
+}
+
+.education__item,
+.work__item {
+  padding: 1rem 0rem;
+}
+
+.education__header,
+.work__header {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 0.5rem;
+}
+
+.education__institution,
+.education__period,
+.work__employer,
+.work__period {
+  font-weight: 700;
+}
+
+.education__period-location,
+.work__period-location {
+  text-align: right;
+}
+
+.education__program,
+.education__location,
+.work__period,
+.work__location {
+  font-style: italic;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
